@@ -2,6 +2,8 @@ package main
 
 import(
     "fmt"
+
+    "github.com/starius/httpheap/chanheap"
 )
 
 func main() {
@@ -20,7 +22,7 @@ func main() {
         close(c2)
     }()
 
-    chan_heap := new(ChanHeap)
+    chan_heap := new(chanheap.ChanHeap)
     chan_heap.AddChan(c1)
     chan_heap.AddChan(c2)
     for {
