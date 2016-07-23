@@ -1,0 +1,22 @@
+location /ints/ {
+  lua_check_client_abort on;
+  content_by_lua '
+    ngx.req.discard_body()
+    local args = ngx.req.get_uri_args()
+    local start = assert(tonumber(args.start))
+    local stop = assert(tonumber(args.stop))
+    local step = assert(tonumber(args.step))
+    local batch = 10000
+    local out = {}
+    local function write()
+      ngx.say(table.concat(out, "\\n") .. "\\n")
+    end
+    for i = start, stop, step do
+      table.insert(out, tostring(i))
+      if #out > batch then
+        write()
+      end
+    end
+    write()
+  ';
+}
