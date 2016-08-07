@@ -1,0 +1,14 @@
+clone_folder: c:\gopath\src\github.com\starius\httpheap
+
+environment:
+  GOPATH: c:\gopath
+
+install:
+  - echo %PATH%
+  - echo %GOPATH%
+  - go version
+  - go env
+  - go get -v -t github.com/starius/httpheap/chanheap
+
+build_script:
+  - go test -v github.com/starius/httpheap/chanheap
