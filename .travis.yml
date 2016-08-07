@@ -6,5 +6,9 @@ go:
   - 1.5
   - 1.6
 
+os:
+  - linux
+  - osx
+
 script:
   - go test github.com/starius/httpheap/chanheap
